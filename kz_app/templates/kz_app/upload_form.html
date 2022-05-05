@@ -1,0 +1,39 @@
+{% extends 'kz_app/feedback.html' %}
+    {% load static %}
+
+    {% block content %}
+        <style>
+            .display-3{
+                background-color:#000000;
+                color:#FFFF99;
+                margin: 2% 25% 3.5% 25%;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            form{
+                border-radius: 10px;
+            }
+            button{
+                margin-top: 2%;
+            }
+        </style>
+        <center>
+            <h1 class="display-3">Upload Feedback</h1>
+            <form method = 'POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
+                    {% for field in upload_form %}
+                        <tr>
+                            <td>{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+            </form>
+        </center>
+    {% endblock %}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
+    {% endblock link %}

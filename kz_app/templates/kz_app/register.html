@@ -1,0 +1,149 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <style>
+            *{
+                margin: 0px auto;
+                padding: auto;
+            }
+            .header{
+                display: flex;
+            }
+            .backimage{
+                background-image: url({% static 'kz_app/img/register.png' %});
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                width: 100%;
+                height: 1000px;
+                border: 4px solid black;
+                padding: 20px 0 0 0;
+            }
+            .blackbox{
+                background-color: rgba(0, 0, 0, 0.45);
+                width: 600px;
+                height: 840px;
+                position: relative;
+                border-radius: 50px;
+                border: 3px solid black;
+            }
+            .blackbox div{
+                position: relative;
+                top: 40px;
+                left: 100px;
+                filter: brightness(100%);
+            }
+            .blackbox input{
+                margin:0 0 17px 10px;
+                position: relative;
+                width: 400px;
+                background-color: rgb(255, 255, 255, 0.8);
+                padding: 0 0 0 15px;
+            }
+            .blackbox label{
+                color: white;
+                font-size: 13px;
+                margin-left: 20px;
+            }
+            .btn1{
+                height: 40px;
+                width: 180px;
+                position: relative;
+                top: 50px;
+                left: 200px;
+                border-radius: 7px;
+                color: white;
+                background-color: blue;
+            }
+            ::placeholder{
+                color: black;
+                opacity: 1;
+                font-weight: bold;
+            }
+            .openLoginPage a{
+                text-decoration: none;
+                color: white;
+                margin: 0 0 0 20px;
+            }
+            .openLoginPage a:hover{
+                text-decoration: none;
+                color: rgba(0, 255, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="backimage">
+            <div class="header">
+                <header class="d-flex flex-wrap py-3" style="margin-left:20px; color:white; height:100px; width: 10%;">
+                    <div class="cur" style="position: absolute;">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" style="color: white; margin-left: 15px; display: flex;">
+                           <b>Kazakhstan</b>&ensp;<img src="https://img.webnots.com/2020/03/Kazakhstan.png" style="width: 27px; height: 22px;">
+                        </button>
+                        <div class="collapse" id="home-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="display: flex; margin-top: 7px;">
+                                {% block link %}
+                                    <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+                                    <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
+                                    <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+                                    <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
+                                    <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
+                                {% endblock link %}
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="blackbox">
+                    <div class="form-group">
+                        <label>Username . . .</label><br>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label>First name . . .</label><br>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        <label>Last name . . .</label><br>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group">
+                        <label>Email . . .</label><br>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number . . .</label><br>
+                        {{ form.phone_num }}
+                    </div>
+                    <div class="form-group">
+                        <label>City . . .</label><br>
+                        {{ form.city }}
+                    </div>
+                    <div class="form-group">
+                        <label>Create Password . . .</label><br>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group">
+                        <label>Password (again) . . .</label><br>
+                        {{ form.password2 }}
+                    </div>
+                    <div class="openLoginPage">
+                        <a href="{% url 'login' %}">Are you have an account?</a>
+                    </div>
+                    <div class="form-error">{{ form.errors }}</div>
+                    <button type="submit" class="btn1">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>

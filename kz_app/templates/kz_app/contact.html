@@ -1,0 +1,116 @@
+{% extends 'kz_app/header.html' %}
+    {% load static %}
+    {% block title %}Contact us{% endblock title %}
+
+    {% block style %}
+        <style>
+            body{
+                background-color: orange;
+            }
+            .blackbox{
+                background-color: rgba(255, 255, 255, 0.3);
+                color: rgba(0, 0, 0, 0.774);
+                width: 600px;
+                height: 530px;
+                position: relative;
+                border-radius: 50px;
+                border: 3px solid black;
+            }
+            .blackbox div{
+                position: relative;
+                top: 30px;
+                left: 100px;
+                filter: brightness(100%);
+            }
+            .blackbox input{
+                margin:0 0 10px 10px;
+                position: relative;
+                width: 400px;
+                background-color: rgb(255, 255, 255, 0.8);
+                padding: 0 0 0 15px;
+                border: 2px solid green;
+                border-radius: 7px;
+                height: 40px;
+            }
+            .blackbox textarea{
+                margin:0 0 10px 10px;
+                position: relative;
+                width: 400px;
+                height: 200px;
+                background-color: rgb(255, 255, 255, 0.8);
+                padding: 5px 0 0 15px;
+                border-radius: 7px;
+                border: 2px solid green;
+            }
+            .blackbox label{
+                color: black;
+                font-size: 20px;
+                margin-left: 20px;
+            }
+            .btn1{
+                height: 40px;
+                width: 180px;
+                position: relative;
+                top: 40px;
+                left: 210px;
+                border-radius: 7px;
+                color: white;
+                background-color: blue;
+            }
+            ::placeholder{
+                color: black;
+                opacity: 1;
+                font-weight: bold;
+            }
+            .openLoginPage a{
+                text-decoration: none;
+                color: white;
+                margin: 0 0 0 20px;
+            }
+            .openLoginPage a:hover{
+                text-decoration: none;
+                color: rgba(0, 255, 0);
+            }
+            h2{
+                margin: 0 0 20px 44%;
+            }
+            label{
+                color: red;
+            }
+        </style>
+    {% endblock style %}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+    {% endblock link %}
+
+    {% block body %}
+            <h2><strong>Send-Mail</strong></h2>
+            {% if error_message %}
+            <div class="alert alert-primary" role="alert" style="margin: 0 30% 3% 30%;">
+                {{ error_message }}
+            </div>
+            {% endif %}
+
+            {% if form %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="blackbox">
+                    <div class="form-group">
+                        <label>Email</label><br>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label><br>
+                        {{ form.subject }}
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label><br>
+                        {{ form.message }}
+                    </div>
+                    <div class="form-error">{{ form.errors }}</div>
+                    <button type="submit" class="btn1">Send</button>
+                </div>
+            </form>
+            {% endif %}
+    {% endblock body %}

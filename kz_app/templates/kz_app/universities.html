@@ -1,0 +1,63 @@
+{% extends 'kz_app/header.html' %}
+{% load static %}
+    {% block title %}Universities of Kazakhstan{% endblock title %}
+
+    {% block style %}
+        <style>
+            body{
+                background-color: rgb(0, 0, 0, 0.7);
+            }
+            .contentArea{
+                width: 80%;
+                height: auto;
+                position: relative;
+                border: 1px solid black;
+                border-radius: 20px;
+                background-color: rgb(255, 255, 255, 0.3);
+                margin: 0 10% 5% 10%;
+                display: block;
+            }
+
+            .contentArea h1{
+                color: black;
+                text-align: center;
+                letter-spacing: 4px;
+                margin: 3% 0 3% 0;
+                font-size: 40px;
+            }
+
+            .contentDesc{
+                width: 70%;
+                text-align: flex-start;
+                border: 1px solid black;
+                margin: 5% 15% 5% 15%;
+                border-radius: 20px;
+                padding: 30px;
+            }
+            .contentDesc p{
+                text-align: end;
+                padding: 20px 0 0 0;
+            }
+        </style>
+    {% endblock style %}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
+    {% endblock link %}
+
+    {% block body %}
+        {% for i in univer %}
+            <div class="contentArea">
+                <h1>{{ i.university_name }}-{{ i.year }}</h1>
+                <div class="contentDesc">
+                    <b>{{ i.description }}</b>
+                    <p>Location: {{ i.location }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endblock body %}
+

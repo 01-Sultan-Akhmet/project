@@ -1,0 +1,92 @@
+{% extends 'kz_app/header.html' %}
+    {% load static %}
+
+    {% block title %}Cities of Kazakhstan{% endblock title %}
+
+    {% block style %}
+        <style>
+            body{
+                background-color: rgb(0, 0, 0);
+            }
+            .contentArea{
+                width: 90%;
+                height: 565px;
+                position: relative;
+                background-color: rgb(255, 255, 255, 0.5);
+                margin: 0 5% 5% 5%;
+                display: block;
+                border: 5px solid;
+                border-image: linear-gradient(#ff512f, #dd2476, #1c64ff) 5;
+                animation: rotate 2.5s ease-in infinite;
+            }
+            @keyframes rotate{
+                50%{
+                    border-image: linear-gradient(360deg, green, purple, yellow) 5;
+                }
+            }
+            .contentArea h1{
+                color: black;
+                text-align: center;
+                letter-spacing: 4px;
+                padding: 10px 0 10px 0;
+                font-size: 40px;
+            }
+
+            .contentDesc{
+                width: 30%;
+                text-align: flex-start;
+                border: 1px solid black;
+                margin: 15px 0 15px 80px;
+                border-radius: 20px;
+                padding: 10px 10px 10px 15px;
+            }
+            .image img{
+                height: 410px;
+                margin: 15px 15px 15px 65px;
+                border-radius: 15px;
+            }
+        </style>
+    {% endblock style %}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
+    {% endblock link %}
+
+    {% block body %}
+        {% for id in city %}
+            <figure class="contentArea">
+                <h1>{{ id.city_name }}</h1>
+                <div style="display: flex;">
+                    <div class="contentDesc">
+                        <b>{{ id.description }}</b>
+                    </div>
+                    <div class="content">
+                        {% if id.city_name == 'Nur-Sultan' %}
+                            <div class="image">
+                                <img src="{% static 'kz_app/img/Astana.webp' %}" class="d-block w-100" alt="...">
+                            </div>
+                        {% endif %}
+                        {% if id.city_name == 'Almaty' %}
+                            <div class="image">
+                                <img src="{% static 'kz_app/img/Almaty.png' %}" class="d-block w-100" alt="...">
+                            </div>
+                        {% endif %}
+                        {% if id.city_name == 'Karaganda' %}
+                            <div class="image">
+                                <img src="{% static 'kz_app/img/Karaganda.png' %}" class="d-block w-100" alt="...">
+                            </div>
+                        {% endif %}
+                        {% if id.city_name == 'Shymkent' %}
+                            <div class="image">
+                                <img src="{% static 'kz_app/img/Shymkent.png' %}" class="d-block w-100" alt="...">
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </figure>
+        {% endfor %}
+    {% endblock body %}

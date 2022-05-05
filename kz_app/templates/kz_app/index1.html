@@ -1,0 +1,62 @@
+{% extends 'kz_app/header.html' %}
+{% load static %}
+
+    {% block title %}Kazakhstan{% endblock title %}
+
+    {% block style %}
+        <style>
+            body{
+                background-image: url({% static 'kz_app/img/backmain.jpg' %});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-fixed: attachment;
+            }
+            .contentArea{
+                width: 48%;
+                margin: 0 25% 0 25%;
+                position: relative;
+                border: 1px solid black;
+                border-radius: 20px;
+                padding: 1%;
+                background-color: rgb(255, 255, 255, 0.25);
+            }
+
+            .contentArea h1{
+                text-align: center;
+                letter-spacing: 5px;
+                padding: 10px 0 10px 0;
+                font-size: 48px;
+                color: black;
+            }
+
+            .contentDesc{
+                width: 100%;
+                text-align: center  ;
+            }
+            .contentDesc b{
+                color: black;
+            }
+        </style>
+    {% endblock style %}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
+    {% endblock link %}
+
+    {% block body %}
+        <div class="contentArea">
+            <h1>Kazakhstan</h1>
+            <div class="contentDesc">
+                <b>Kazakhstan, officially the Republic of Kazakhstan, is a transcontinental country located mainly in Central Asia, and partly in Eastern Europe.
+                It borders Russia in the north and west, China in the east, and Kyrgyzstan, Uzbekistan, and Turkmenistan in the south.
+                The capital is Nur-Sultan, formerly known as Astana.
+                Almaty, Kazakhstan's largest city, was the country's previous capital until 1997.
+                Kazakhstan is the world's largest landlocked country, the world's largest Muslim-majority country by land area, and the ninth-largest country in the world.
+                It has a population of 19 million, and one of the lowest population densities in the world, at fewer than 6 people per square kilometre.</b>
+            </div>
+        </div>
+    {% endblock body %}

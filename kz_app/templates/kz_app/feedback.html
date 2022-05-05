@@ -1,0 +1,68 @@
+{% extends 'kz_app/header.html' %}
+
+    {% block title %}Feedback{% endblock %}
+
+    {% block style %}
+        <style>
+            body{
+                background-color: rgb(0, 0, 0, 0.7);
+            }
+            .contentArea{
+                width: 90%;
+                height: 495px;
+                position: relative;
+                border: 1px solid black;
+                border-radius: 20px;
+                background-color: rgb(255, 255, 255, 0.3);
+                margin: 0 5% 5% 5%;
+                display: block;
+            }
+            .contentArea h1{
+                color: black;
+                text-align: center;
+                letter-spacing: 4px;
+                padding: 30px 0 10px 0;
+                font-size: 40px;
+            }
+
+            .contentDesc{
+                width: 30%;
+                text-align: flex-start;
+                border: 1px solid black;
+                margin: 15px 0 15px 80px;
+                border-radius: 20px;
+                padding: 10px 10px 10px 15px;
+            }
+        </style>
+    {% endblock style%}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'upload-book' %}" style="text-decoration: none; color: white;"><p>New Feedback</p></a></li>
+    {% endblock link %}
+
+    {% block body %}
+        {% block content %}
+            <div class="card-colum">
+                {% for book in shelf %}
+                    <div class="card" style="width: 18rem; margin: 0 0 40px 40px; border-radius: 10px; border: 3px solid orange;">
+                        <img class="card-img-top" src="{{ book.picture.url }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.name }}</h5>
+                            <p class="card-text">{{ book.feedback }}</p>
+                            <div class="card-footer bg-transparent border-dark">
+                               <p class="card-title">{{book.author}}</p>
+                               <center>
+                                   <a href="update/{{book.id}}" class="btn btn-warning" id = '{{book.id}}'>edit</a>
+                                   <a href="delete/{{book.id}}" class="btn btn-danger" id = '{{book.id}}'>delete</a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock content %}
+    {% endblock body %}
+    </body>
+</html>

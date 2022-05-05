@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            body{
+                background-color: orange;
+            }
+            h1{
+                margin: 15% 0 4% 40%;
+                font-family:
+            }
+            h2{
+                margin: 0 0 0 35%;
+            }
+            h3{
+                margin: 2% 0 0 57%;
+            }
+            a{
+                text-decoration: none;
+                color: inherit;
+            }
+            a{
+                background:
+                    linear-gradient(to right, orange, orange),
+                    linear-gradient(to right, rgba(255, 0, 0, 1), rgba(255, 0, 180, 1),rgba(0, 100, 200, 1));
+                background-size: 100% 3px, 0 3px;
+                background-position: 100% 100%, 0 100%;
+                background-repeat: no-repeat;
+                transition: background-size 400ms;
+            }
+            a:hover{
+                background-size: 0 3px, 100% 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1><strong>Email successfully sent</strong></h1>
+            <h2><strong>Your message was successfully sent to admin</strong></h2>
+            <h3><a href="{% url 'index1' %}">Main Page -></a></h3>
+        </div>
+    </body>
+</html>

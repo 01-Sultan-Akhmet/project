@@ -1,0 +1,94 @@
+{% extends 'kz_app/header.html' %}
+    {% load static %}
+
+    {% block title %}Login{% endblock title %}
+    {% block style %}
+        <style>
+            body{
+                background-image: url({% static 'kz_app/img/register.png' %});
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-fixed: attachment;
+            }
+            *{
+                margin: 0px auto;
+                padding: auto;
+            }
+            .blackbox{
+                background-color: rgba(0, 0, 0, 0.5);
+                width: 600px;
+                height: 500px;
+                position: relative;
+                border-radius: 50px;
+            }
+            .blackbox div{
+                position: relative;
+                top: 70px;
+                left: 100px;
+                filter: brightness(100%);
+            }
+            .blackbox input{
+                margin:0 0 40px 10px;
+                position: relative;
+                width: 400px;
+                background-color: rgb(255, 255, 255, 0.8);
+                padding: 0 0 0 15px;
+            }
+            .blackbox label{
+                color: white;
+                font-size: 16px;
+                margin-left: 20px;
+            }
+            .btn1{
+                height: 40px;
+                width: 180px;
+                position: relative;
+                top: 130px;
+                left: 200px;
+                border-radius: 7px;
+                color: white;
+                background-color: blue;
+            }
+            ::placeholder{
+                color: black;
+                opacity: 1;
+                font-weight: bold;
+            }
+            .openLoginPage a{
+                text-decoration: none;
+                color: white;
+                margin: 0 0 0 20px;
+            }
+            .openLoginPage a:hover{
+                text-decoration: none;
+                color: rgba(0, 255, 0);
+            }
+        </style>
+    {% endblock style %}
+
+    {% block link %}
+        <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+    {% endblock link %}
+
+    {% block body %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="blackbox">
+                <div class="form-group">
+                    <label>Username . . .</label><br>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label>Password . . .</label><br>
+                    {{ form.password }}
+                </div>
+                <div class="form-error">
+                    {{ form.error }}
+                </div>
+                <div class="openLoginPage">
+                    <a href="{% url 'register' %}">If you haven't account, click here !</a>
+                </div>
+                <button type="submit" class="btn1">Login</button>
+            </div>
+        </form>
+    {% endblock body %}
