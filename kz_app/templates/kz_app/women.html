@@ -1,0 +1,17 @@
+{% extends 'kz_app/womens.html' %}
+    {% block post %}
+        <li>
+            <h1>{{women.title}}</h1><br>
+            <div style="width: 90%;margin: 0 9% 60px 1%;">
+                <em style="font-size: 25px; line-height: 45px; line-width: 90%; font-weight: 300;">
+                    {{women.content|safe}}
+                </em>
+            </div>
+            <div class="clear"></div>
+            <div style="display:flex; width: 120px; margin-left: 78%;">
+                <p><a href="{{ women.link }}" style="font-size: 25px;" target="_blank">More&ensp;</a></p>
+                <p style="font-size: 25px;"> or&ensp;</p>
+                <p><a href="{% url 'sportmasters' %}" style="font-size: 25px;">Back</a></p>
+            </div>
+        </li>
+    {% endblock post %}

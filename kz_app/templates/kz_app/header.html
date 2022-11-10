@@ -16,31 +16,34 @@
                 .header{
                     display: flex;
                 }
-
                 *{
                     margin: 0px auto;
                     padding: auto;
+                }
+                #head_btn{
+                    border: 1px solid black;
+                    box-shadow: #010101 3px 3px 0px;
+                }
+                #head_btn:hover{
+                    background-color: blue;
+                }
+                #head_btn:active{
+                    box-shadow: #010101 0px 0px 0px;
+                    transform: translateX(3px) translateY(3px);
                 }
                 .auth{
                     display: flex;
                     margin: 20px 3% 3% 35%;
                 }
-                a{
+                .auth a{
                     text-decoration: none;
                     color: white;
+                    font-size: 20px;
+                    font-family: bold;
                 }
-                a{
-                    background:
-                        linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0)),
-                        linear-gradient(to right, rgba(255, 0, 0, 1), rgba(255, 0, 180, 1),rgba(0, 100, 200, 1));
-                    background-size: 100% 3px, 0 3px;
-                    background-position: 100% 100%, 0 100%;
-                    background-repeat: no-repeat;
-                    transition: background-size 400ms;
-                }
-                a:hover{
-                    background-size: 0 3px, 100% 3px;
-                    color: white;
+                .auth a:hover{
+                    text-decoration: none;
+                    color: orange;
                 }
             </style>
     </head>
@@ -48,7 +51,7 @@
         <div class="header">
             <header class="d-flex flex-wrap py-3" style="margin-left:20px; color:white; height:100px; width: 10%;">
                 <div class="cur" style="position: absolute;">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" style="color: white; margin-left: 15px; display: flex;">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" id="head_btn" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" style="color: white; margin-left: 15px; display: flex;">
                        <b>Kazakhstan</b>&ensp;<img src="https://img.webnots.com/2020/03/Kazakhstan.png" style="width: 27px; height: 22px;">
                     </button>
                     <div class="collapse" id="home-collapse">
@@ -76,8 +79,8 @@
                                 <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
                                 <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
                                 <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+                                <li style="margin-left: 20px;"><a href="{% url 'sportmasters' %}" style="text-decoration: none; color: white;"><p>Sport-masters</p></a></li>
                                 <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
-                                <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
                             {% endblock link %}
                         </ul>
                     </div>

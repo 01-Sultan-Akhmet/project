@@ -1,0 +1,30 @@
+{% extends 'kz_app/city.html' %}
+{% load static %}
+
+    {% block title %}Cities of South of Kazakhstan{% endblock title %}
+    {% block body %}
+        <div class="btn" id="city">
+            <a href="{% url 'city' %}">All city</a>
+            <a href="{% url 'south' %}" style="background-color: rgb(0, 200, 0);">South</a>
+            <a href="{% url 'north' %}">North</a>
+            <a href="{% url 'central' %}">Central</a>
+            <a href="{% url 'west' %}">West</a>
+            <a href="{% url 'east' %}">East</a>
+            <a href="{% url 'feedbacks' %}" style="margin-left: 200px;">Feedback</a>
+        </div>
+        {% for id in city %}
+            <figure class="contentArea">
+                <h1>{{ id.city_name }}</h1>
+                <div style="display: flex;">
+                    <div class="contentDesc">
+                        <b>{{ id.description|safe }}</b>
+                    </div>
+                    <div class="content">
+                        <div class="image">
+                            <img src="{{id.image.url}}" class="img-fuid" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </figure>
+        {% endfor %}
+    {% endblock body %}

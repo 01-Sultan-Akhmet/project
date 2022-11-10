@@ -33,13 +33,16 @@
                 border-radius: 20px;
                 padding: 10px 10px 10px 15px;
             }
+            .buttom3{
+                border: 1px solid white;
+                margin: 0 0 3% 88%;
+            }
         </style>
     {% endblock style%}
 
     {% block link %}
         <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
         <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
-        <li style="margin-left: 20px;"><a href="{% url 'upload-book' %}" style="text-decoration: none; color: white;"><p>New Feedback</p></a></li>
     {% endblock link %}
 
     {% block body %}
@@ -49,10 +52,9 @@
                     <div class="card" style="width: 18rem; margin: 0 0 40px 40px; border-radius: 10px; border: 3px solid orange;">
                         <img class="card-img-top" src="{{ book.picture.url }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ book.name }}</h5>
-                            <p class="card-text">{{ book.feedback }}</p>
+                            <p class="card-text">{{ book.name }}:&emsp;{{ book.feedback }}</p>
                             <div class="card-footer bg-transparent border-dark">
-                               <p class="card-title">{{book.author}}</p>
+                               <p class="card-title">{{book.author}}(c)</p>
                                <center>
                                    <a href="update/{{book.id}}" class="btn btn-warning" id = '{{book.id}}'>edit</a>
                                    <a href="delete/{{book.id}}" class="btn btn-danger" id = '{{book.id}}'>delete</a>
@@ -61,6 +63,9 @@
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="btn buttom3">
+                <a href="{% url 'upload-book' %}"><button>New Feedback</button></a>
             </div>
         {% endblock content %}
     {% endblock body %}

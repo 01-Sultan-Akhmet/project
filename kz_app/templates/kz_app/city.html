@@ -8,12 +8,40 @@
             body{
                 background-color: rgb(0, 0, 0);
             }
+            #city{
+                margin: 0 5% 2% 5%;
+                padding: 1% 1% 1.5% 2%;
+                display: flex;
+                background-color: white;
+            }
+            #city a{
+                width: 140px;
+                text-decoration: none;
+                color:black;
+                padding: 4px 10px 4px 10px;
+                border-radius: 3px;
+                border: 1px solid black;
+                margin-right: 20px;
+                box-shadow: black 3px 3px;
+                text-align: center;
+            }
+            #city a:hover{
+                color: white;
+                background-color: black;
+                border: 1px solid white;
+            }
+            #city a:active{
+                box-shadow: white 0px 0px 0px;
+                transform: translateX(3px) translateY(3px);
+                background-color: rgb( 0, 200, 0);
+            }
             .contentArea{
                 width: 90%;
-                height: 565px;
+                height: auto;
                 position: relative;
                 background-color: rgb(255, 255, 255, 0.5);
                 margin: 0 5% 5% 5%;
+                padding: 15px;
                 display: block;
                 border: 5px solid;
                 border-image: linear-gradient(#ff512f, #dd2476, #1c64ff) 5;
@@ -31,7 +59,6 @@
                 padding: 10px 0 10px 0;
                 font-size: 40px;
             }
-
             .contentDesc{
                 width: 30%;
                 text-align: flex-start;
@@ -50,43 +77,36 @@
 
     {% block link %}
         <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
-        <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
         <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'sportmasters' %}" style="text-decoration: none; color: white;"><p>Sport-masters</p></a></li>
         <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
-        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
     {% endblock link %}
 
     {% block body %}
+        <div class="btn" id="city">
+            <a href="{% url 'city' %}" style="background-color: rgb(0, 200, 0);">All city</a>
+            <a href="{% url 'south' %}">South</a>
+            <a href="{% url 'north' %}">North</a>
+            <a href="{% url 'central' %}">Central</a>
+            <a href="{% url 'west' %}">West</a>
+            <a href="{% url 'east' %}">East</a>
+            <a href="{% url 'feedbacks' %}" style="margin-left: 200px;">Feedback</a>
+        </div>
         {% for id in city %}
             <figure class="contentArea">
-                <h1>{{ id.city_name }}</h1>
-                <div style="display: flex;">
-                    <div class="contentDesc">
-                        <b>{{ id.description }}</b>
+                <a href="{{ id.slug }}">
+                    <h1>{{ id.city_name }}</h1>
+                    <div style="display: flex;">
+                        <div class="contentDesc">
+                            <b>{{ id.description|safe }}</b>
+                        </div>
+                        <div class="content">
+                            <div class="image">
+                                <img src="{{id.image.url}}" class="img-fuid" alt="...">
+                            </div>
+                        </div>
                     </div>
-                    <div class="content">
-                        {% if id.city_name == 'Nur-Sultan' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/Astana.webp' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% endif %}
-                        {% if id.city_name == 'Almaty' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/Almaty.png' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% endif %}
-                        {% if id.city_name == 'Karaganda' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/Karaganda.png' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% endif %}
-                        {% if id.city_name == 'Shymkent' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/Shymkent.png' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
+                </a>
             </figure>
         {% endfor %}
     {% endblock body %}

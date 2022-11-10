@@ -4,11 +4,10 @@ from django import forms
 from django.conf import settings
 from django.core.mail import send_mail
 
-from .models import Feedback
-from django.forms import *
 from django import forms
 from django.db import models
-
+from .models import *
+from django.forms import CharField, TextInput, PasswordInput, EmailInput, EmailField, Textarea, NumberInput, ModelForm, Form
 
 class FeedbackCreate(ModelForm):
     class Meta:
@@ -21,11 +20,11 @@ class FeedbackCreate(ModelForm):
             }),
             'author': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Name of status'
+                'placeholder': 'Author'
             }),
             'feedback': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Name of status'
+                'placeholder': 'Feedback'
             })
         }
 
@@ -87,6 +86,8 @@ class LoginUserForm(AuthenticationForm):
         'type': 'password',
         'style': 'border-radius: 7px; height: 45px; border: 2px solid orange;'
     }))
+
+
 class contactForm(forms.Form):
     subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
         'class': 'form-input',

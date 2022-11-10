@@ -1,3 +1,4 @@
+
 from django.views import View
 from django.conf import settings
 from django.urls import reverse_lazy
@@ -21,18 +22,6 @@ from .forms import *
 def index1(request):
     return render(request, 'kz_app/index1.html')
 
-def city(request):
-    model = {
-        'city': Cities.objects.all(),
-    }
-    return render(request, 'kz_app/city.html', model)
-
-def university(request):
-    model = {
-        'univer': University.objects.all(),
-    }
-    return render(request, 'kz_app/universities.html', model)
-
 def foods(request):
     context = {
         'foods': Food.objects.all(),
@@ -53,7 +42,7 @@ def update_book(request, book_id):
     if book_form.is_valid():
        book_form.save()
        return redirect('feedbacks')
-    return render(request, 'kz_app/upload_form.html', {'upload_form':book_form})
+    return render(request, 'kz_app/upload_feedback.html', {'upload_form':book_form})
 
 def delete_book(request, book_id):
     book_id = int(book_id)
@@ -64,12 +53,15 @@ def delete_book(request, book_id):
     book_sel.delete()
     return redirect('feedbacks')
 
+def womens(request):
+    return render(request, 'kz_app/womens.html', context={'women': Sportmasters_of_Kazakhstan.objects.order_by('-id')})
+
 def women_slug(request ,women_slug):
-    women = get_object_or_404(Womens_of_Kazakhstan, slug=women_slug)
+    women = get_object_or_404(Sportmasters_of_Kazakhstan, slug=women_slug)
     context = {
         'women': women,
     }
-    return render(request, 'kz_app/womens.html', context=context)
+    return render(request, 'kz_app/women.html', context=context)
 
 def upload(request):
     upload = FeedbackCreate()
@@ -81,7 +73,7 @@ def upload(request):
         else:
             return HttpResponse("""your form is wrong, reload on <a href = "{% url 'feedbacks' %}">reload</a>""")
     else:
-        return render(request, 'kz_app/upload_form.html', {'upload_form':upload})
+        return render(request, 'kz_app/upload_feedback.html', {'upload_form':upload})
 
 class RegisterUser(CreateView):
     form_class = CreateUserForm
@@ -116,21 +108,6 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
-# def contactView(request):
-#     if request.method == 'GET':
-#         form = contactForm()
-#     else:
-#         form = contactForm(request.POST)
-#         if form.is_valid():
-#             subject = form.cleaned_data['subject']
-#             from_email = form.cleaned_data['from_email']
-#             message = form.cleaned_data['message']
-#             try:
-#                 send_mail(subject, message, from_email, ['sultanahmet011220012@gmail.com'])
-#             except BadHeaderError:
-#                 return HttpResponse('Invalid header found. ')
-#             return redirect('success')
-#     return render(request, 'kz_app/contact.html', {'form': form})
 
 class EmailView(View):
     form_class = contactForm
@@ -142,7 +119,6 @@ class EmailView(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-
         if form.is_valid():
             to_email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
@@ -155,9 +131,12 @@ class EmailView(View):
                               {'form': form, 'error_message': 'Your message was successfully sent to %s' % email})
             except:
                 return render(request, 'kz_app/contact.html',
-                              {'form': form, 'error_message': 'Error!!! Try again'})
+                              {'form': form, 'error_message': 'Form is invalid .'})
 
-        return render(request, 'kz_app/contact.html', {'form': form, 'error_message': 'Message has not send. Please, try after 10 minute !'})
+        return render(request, 'kz_app/contact.html', {'form': form, 'error_message': 'Try again !!!'})
+
+
+
 
 
 

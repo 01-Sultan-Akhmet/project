@@ -1,52 +1,52 @@
 {% extends 'kz_app/header.html' %}
     {% load static %}
-    {% block title %}Womens{% endblock title %}
+    {% block title %}Sport masters of Kazakhstan{% endblock title %}
 
     {% block style %}
         <style>
             body{
                 background-color: rgb(0, 0, 0, 0.78);
             }
-            .list-articles li{
-                margin: 40px 0 0 45px;
-                color: white;
-                padding: 10px;
-            }
-            li h2{
-                color: white;
-            }
-            li p{
-                color: white;
-            }
-            li a{
+            ul a{
                 text-decoration: none;
                 color: white;
             }
-            .link-read-post{
-                margin: 5px 0 0 90%;
+            .list-articles li{
+                margin: 40px 20px 0 45px;
+                color: white;
+                padding: 25px 40px;
+                border-radius: 10px;
+            }
+            .li{
+                border: 1px solid white;
             }
         </style>
     {% endblock style %}
 
     {% block link %}
         <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
-        <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
-        <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="#" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="#" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
         <li style="margin-left: 20px;"><a href="{% url 'foods' %}" style="text-decoration: none; color: white;"><p>Foods</p></a></li>
-        <li style="margin-left: 20px;"><a href="{% url 'feedbacks' %}" style="text-decoration: none; color: white;"><p>Feedbacks</p></a></li>
     {% endblock link %}
 
     {% block body %}
-        <ul class="list-articles">
-            <li>
-                <h3>{{women.title}}</h3>
-                <em>{% autoescape off %}
-                        {{women.content|linebreaks|truncatewords:80}}
-                    {% endautoescape %}
-                </em>
-                <div class="clear"></div>
-                <p class="link-read-post"><a href="{{ women.link }}" target="_blank">Read post</a></p>
-            </li>
+        <ul class="list-articles" style="margin: 0 0 100px 0;">
+            {% block post %}
+            {% for id in women %}
+            <a href="{{ id.slug }}">
+                <li class="li">
+                    <h3>{{id.title}}</h3>
+                    <p>
+                        {% autoescape off %}
+                            {{id.content|linebreaks|truncatewords:60}}
+                        {% endautoescape %}
+                    </p>
+                    <div class="clear"></div>
+                </li>
+            </a>
+            {%  endfor %}
+            {% endblock post %}
         </ul>
     {% endblock body %}
 

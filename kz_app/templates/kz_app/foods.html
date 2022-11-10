@@ -45,6 +45,13 @@
         </style>
     {% endblock style %}
 
+    {% block link %}
+                <li style="margin-left: 27px;"><a href="{% url 'index1' %}" style="text-decoration: none; color: white;"><p>Main Page</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'city' %}" style="text-decoration: none; color: white;"><p>Cities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'university' %}" style="text-decoration: none; color: white;"><p>Universities</p></a></li>
+        <li style="margin-left: 20px;"><a href="{% url 'sportmasters' %}" style="text-decoration: none; color: white;"><p>Sport-masters</p></a></li>
+    {% endblock link %}
+
     {% block body %}
         {% for id in foods %}
             <div class="contentArea">
@@ -54,30 +61,16 @@
                         <b>{{ id.description }}</b>
                     </div>
                     <div class="content">
-                        {% if id.name == 'Beshbarmak' %}
-                            <div class="image" style="">
-                                <img src="{% static 'kz_app/img/beshbarmak.webp' %}" class="d-block w-100" alt="...">
-                            </div>
-                            <style>
-                                .contentArea{
-                                    height: auto;
-                                    padding-bottom: 20px;
-                                    position: relative;
-                                }
-                            </style>
-                        {% elif id.name == 'Kuurdak' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/kuurdak.jpg' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% elif id.name == 'Kazy' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/kazy.webp' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% elif id.name == 'Zhaya' %}
-                            <div class="image">
-                                <img src="{% static 'kz_app/img/zhaya.jpg' %}" class="d-block w-100" alt="...">
-                            </div>
-                        {% endif %}
+                        <div class="image" style="">
+                            <img src="{{id.images.url}}" class="d-block w-100" alt="...">
+                        </div>
+                        <style>
+                            .contentArea{
+                                height: auto;
+                                padding-bottom: 20px;
+                                position: relative;
+                            }
+                        </style>
                     </div>
                 </div>
             </div>
